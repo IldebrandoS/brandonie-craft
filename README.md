@@ -2,6 +2,7 @@
 
 Changelog
 5/20/20
+
 •	Spells
 o	Windfury Totem now applies through LOS
 
