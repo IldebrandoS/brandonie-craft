@@ -1341,9 +1341,10 @@ struct npc_blackwing_technicianAI : public ScriptedAI
 
             if (m_creature->IsWithinLOSInMap(victim))
             {
+                const SpellEntry* pSpell = sSpellMgr.GetSpellEntry(SPELL_BOMB);
                 if (!m_uiPoisonBottleTimer && DoCastSpellIfCan(victim, SPELL_POISON_BOTTLE) == CAST_OK)
                     m_uiPoisonBottleTimer = urand(3500, 6000);
-                else
+                else if(!CanCastSpell(victim, pSpell, false))
                     m_creature->CastSpell(victim->GetPositionX(), victim->GetPositionY(), victim->GetPositionZ(), SPELL_BOMB, false);
             }
         }
