@@ -66,6 +66,10 @@ CanCastResult CreatureAI::CanCastSpell(Unit* pTarget, const SpellEntry *pSpell, 
         // Check for power (also done by Spell::CheckCast())
         if (m_creature->GetPower((Powers)pSpell->powerType) < Spell::CalculatePowerCost(pSpell, m_creature))
             return CAST_FAIL_POWER;
+
+        // Check if target is immune (should hopefuly cause blackwing techs to run up to iceblock and melee if target is in iceblock)
+        if (pTarget->IsImmuneToDamage(pSpell->GetSpellSchoolMask(), pSpell))
+             return SPELL_FAILED_IMMUNE;
     }
 
     if (pSpell->Custom & SPELL_CUSTOM_BEHIND_TARGET && pTarget->HasInArc(M_PI_F, m_creature))
