@@ -21,6 +21,6 @@ Changelog
 
 <ul><li>Class Mechanics
       <ul>
-        <li>While a melee ability is queued, your offhand weapon swings do not suffer from dualwield penalty </li>
+        <li>While a melee ability is queued, your offhand weapon swings no longer suffer from dualwield penalty </li>
       </ul>
    </li></ul>
