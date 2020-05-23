@@ -16,3 +16,11 @@ Changelog
       </ul>
    </li>
 </ul>
+<br>
+5/21/20
+
+<ul><li>Class Mechanics
+      <ul>
+        <li>While a melee ability is queued, your offhand weapon swings do not suffer from dualwield penalty </li>
+      </ul>
+   </li></ul>
