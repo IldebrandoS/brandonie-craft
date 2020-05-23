@@ -107,10 +107,10 @@ struct boss_razorgoreAI : public ScriptedAI
     void Reset() override
     {
         SetCombatMovement(true);
-        m_uiCleaveTimer         = 9000;                       // These times are probably wrong
-        m_uiWarStompTimer       = 22000;
-        m_uiConflagrationTimer  = 12000;
-        m_uiFireballVolleyTimer = 7000;
+        m_uiCleaveTimer         = urand(5000, 15000);;                       // These times are probably wrong
+        m_uiWarStompTimer       = urand(10000, 16000);;
+        m_uiConflagrationTimer  = urand(8000, 17000);;
+        m_uiFireballVolleyTimer = urand(8000, 20000);;
         m_uiOutOfReachTimer     = 10000;
         m_uiInitTimer           = 5000;
 
@@ -306,7 +306,7 @@ struct boss_razorgoreAI : public ScriptedAI
         {
             DEBUG_EMOTE("cleave");
             if (DoCastSpellIfCan(m_creature->GetVictim(), SPELL_CLEAVE) == CAST_OK)
-                m_uiCleaveTimer = urand(5000, 10000);
+                m_uiCleaveTimer = urand(10000, 15000);
         }
         else
             m_uiCleaveTimer -= uiDiff;
