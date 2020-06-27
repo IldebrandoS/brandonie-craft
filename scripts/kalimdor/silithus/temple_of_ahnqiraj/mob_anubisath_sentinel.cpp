@@ -27,7 +27,7 @@ enum
 {
     SPELL_MENDING_BUFF =        2147,
     SPELL_KNOCK_BUFF =          21737,
-    SPELL_KNOCK =               23382,
+    SPELL_KNOCK =               25778,
     SPELL_MANAB_BUFF =          812,
     SPELL_MANAB =               25779,
 
@@ -36,7 +36,7 @@ enum
     SPELL_THORNS_BUFF =         25777,
 
     SPELL_THUNDER_BUFF =        2834,
-    SPELL_THUNDER =             23931,
+    SPELL_THUNDER =             8732,
 
     SPELL_MSTRIKE_BUFF =        9347,
     SPELL_MSTRIKE =             24573,

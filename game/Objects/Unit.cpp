@@ -2157,6 +2157,24 @@ void Unit::AttackerStateUpdate(Unit* pVictim, WeaponAttackType attType, bool che
         if (!spell || !spell->IsNextMeleeSwingSpell() || spell->isSuccessCast())
             return;
     }
+    
+
+    WeaponAttackType tempAttack = attType;
+    if(m_currentSpells[CURRENT_MELEE_SPELL]){
+        attType = OFF_ATTACK;
+    }
+
+    //offhand windfury procs while heroic strike or cleave are queued will recieve effects of these spells
+    if (attType == OFF_ATTACK && m_currentSpells[CURRENT_MELEE_SPELL] && extra)
+    {
+        m_currentSpells[CURRENT_MELEE_SPELL]->cast();
+        Spell* spell = m_currentSpells[CURRENT_MELEE_SPELL];
+        if (!spell || !spell->IsNextMeleeSwingSpell() || spell->isSuccessCast())
+            return;
+    }
+
+    attType = tempAttack;
+
 
     CalcDamageInfo damageInfo;
     CalculateMeleeDamage(pVictim, 0, &damageInfo, attType);

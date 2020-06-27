@@ -340,8 +340,9 @@ struct boss_yaujAI : public boss_bug_trioAI
                 if (DoCastSpellIfCan(m_creature, SPELL_HEAL) == CAST_OK)
                     m_uiHealTimer = 12000;
             }
-            else if (Unit* pTarget = m_creature->FindLowestHpFriendlyUnit(100.0f))
-            {
+            else
+            {   
+                Unit* pTarget = m_creature->FindLowestHpFriendlyUnit(100.0f)
                 if (DoCastSpellIfCan(pTarget, SPELL_HEAL) == CAST_OK)
                     m_uiHealTimer = 12000;
             }
@@ -405,8 +406,10 @@ struct boss_vemAI : public boss_bug_trioAI
             // Only charge targets outside of melee range
             if (Unit* pTarget = m_creature->SelectAttackingTarget(ATTACKING_TARGET_RANDOM, 0, SPELL_CHARGE, SELECT_FLAG_NOT_IN_MELEE_RANGE))
             {
-                if (DoCastSpellIfCan(pTarget, SPELL_CHARGE) == CAST_OK)
-                    m_uiChargeTimer = urand(15000, 20000);
+                if (!(m_creature->IsWithinMeleeRange(m_creature->GetVictim()))){
+                    if (DoCastSpellIfCan(pTarget, SPELL_CHARGE) == CAST_OK)
+                    m_uiChargeTimer = urand(10000, 15000);
+                }    
             }
         }
         else
