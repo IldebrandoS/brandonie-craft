@@ -333,19 +333,10 @@ struct boss_yaujAI : public boss_bug_trioAI
 
         // Heal
         if (m_uiHealTimer < uiDiff)
-        {
-            // Yauj prioritizes herself with heal when under 93%
-            if (m_creature->GetHealthPercent() <= 93.0f)
-            {
-                if (DoCastSpellIfCan(m_creature, SPELL_HEAL) == CAST_OK)
-                    m_uiHealTimer = 12000;
-            }
-            else
-            {   
-                Unit* pTarget = m_creature->FindLowestHpFriendlyUnit(100.0f)
-                if (DoCastSpellIfCan(pTarget, SPELL_HEAL) == CAST_OK)
-                    m_uiHealTimer = 12000;
-            }
+        {      
+            Unit* pTarget = m_creature->FindLowestHpFriendlyUnit(100.0f)
+             if (DoCastSpellIfCan(pTarget, SPELL_HEAL) == CAST_OK)
+                 m_uiHealTimer = 12000;
         }
         else
             m_uiHealTimer -= uiDiff;

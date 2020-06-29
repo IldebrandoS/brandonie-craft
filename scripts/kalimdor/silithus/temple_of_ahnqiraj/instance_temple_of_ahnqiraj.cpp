@@ -766,6 +766,41 @@ void instance_temple_of_ahnqiraj::UpdateStomachOfCthun(uint32 diff)
         ++it;
     }
 }
+struct AI_VeknissGuardian : public ScriptedAI{
+     uint32 Vekniss_Guardian_Impale = 26025;
+     uint32 Vekniss_Guardian_Enrage = 8599;
+
+     AI_VeknissGuardian(Creature* pCreature) :
+        ScriptedAI(pCreature)
+    {
+        Reset();
+    }
+
+
+    void Reset() override
+    {
+        
+    }
+
+     void JustDied(Unit* pWho ) override
+    {
+        if (Creature* veknissGuardian = m_pInstance->GetSingleCreatureFromStorage(NPC_VEKNISS_GUARDIAN))
+            DoCastSpellIfCan(pWho, Vekniss_Guardian_Impale, CF_TRIGGERED);   
+    }
+
+    void UpdateAI(const uint32 diff) override
+    {
+        if(m_creature->GetHealthPercent() <= 25.0f){
+            DoCastSpellIfCan(m_creature, Vekniss_Guardian_Enrage, CF_TRIGGERED); 
+        }
+
+        DoMeleeAttackIfReady();
+    }
+
+}
+
+
+
 
 struct AI_QirajiMindslayer : public ScriptedAI {
     uint32 insanityTimer;
@@ -862,6 +897,11 @@ InstanceData* GetInstanceData_instance_temple_of_ahnqiraj(Map* pMap)
     return new instance_temple_of_ahnqiraj(pMap);
 }
 
+CreatureAI* GetAI_veknissGuardian(Creature* pCreature)
+{
+    return new AI_VeknissGuardian(pCreature);
+}
+
 CreatureAI* GetAI_qirajiMindslayer(Creature* pCreature)
 {
     return new AI_QirajiMindslayer(pCreature);
@@ -879,6 +919,11 @@ void AddSC_instance_temple_of_ahnqiraj()
     pNewScript = new Script;
     pNewScript->Name = "at_temple_ahnqiraj";
     pNewScript->pAreaTrigger = &AreaTrigger_at_temple_ahnqiraj;
+    pNewScript->RegisterSelf();
+
+    pNewScript = new Script;
+    pNewScript->Name = "mob_vekniss_guardian";
+    pNewScript->GetAI = &GetAI_veknissGuardian;
     pNewScript->RegisterSelf();
 
     pNewScript = new Script;
