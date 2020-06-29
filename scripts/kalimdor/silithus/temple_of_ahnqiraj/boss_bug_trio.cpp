@@ -135,6 +135,25 @@ struct boss_bug_trioAI : public ScriptedAI
             m_creature->SetTargetGuid(ObjectGuid());
         }
     }
+    bool LowestHp(Creature* mob1, Creature* mob2){
+        return mob1->GetHealthPercent() < mob1->GetHealthPercent();
+    }
+
+    void HealLowestHp(){
+        Creature* pKri = m_pInstance->GetSingleCreatureFromStorage(NPC_KRI);
+        Creature* pYauj = m_pInstance->GetSingleCreatureFromStorage(NPC_PRINCESS_YAUJ);
+        Creature* pVem = m_pInstance->GetSingleCreatureFromStorage(NPC_VEM);
+        std::list<Unit*> targets;
+
+        targets.push_front(pKri);
+        targets.push_front(pYauj);
+        targets.push_front(pVem);
+
+        targets.sort(LowestHp)
+
+        if (DoCastSpellIfCan(*targets.begin(), SPELL_HEAL) == CAST_OK)
+                 m_uiHealTimer = 12000;
+    }
 
     void LeashEncounter()
     {
@@ -334,9 +353,7 @@ struct boss_yaujAI : public boss_bug_trioAI
         // Heal
         if (m_uiHealTimer < uiDiff)
         {      
-            Unit* pTarget = m_creature->FindLowestHpFriendlyUnit(100.0f);
-             if (DoCastSpellIfCan(pTarget, SPELL_HEAL) == CAST_OK)
-                 m_uiHealTimer = 12000;
+            HealLowestHp();
         }
         else
             m_uiHealTimer -= uiDiff;

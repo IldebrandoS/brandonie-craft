@@ -276,6 +276,7 @@ void instance_temple_of_ahnqiraj::OnCreatureCreate(Creature* pCreature)
 {
     switch (pCreature->GetEntry())
     {
+    case NPC_VEKNISS_GUARDIAN:
     case NPC_PRINCESS_YAUJ:
     case NPC_VEM:
     case NPC_KRI:
