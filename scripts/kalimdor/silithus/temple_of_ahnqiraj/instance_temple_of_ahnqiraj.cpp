@@ -769,10 +769,12 @@ void instance_temple_of_ahnqiraj::UpdateStomachOfCthun(uint32 diff)
 struct AI_VeknissGuardian : public ScriptedAI{
      uint32 Vekniss_Guardian_Impale = 26025;
      uint32 Vekniss_Guardian_Enrage = 8599;
-
+     ScriptedInstance* m_pInstance;
+     
      AI_VeknissGuardian(Creature* pCreature) :
         ScriptedAI(pCreature)
     {
+        m_pInstance = (ScriptedInstance*)pCreature->GetInstanceData();
         Reset();
     }
 
@@ -797,7 +799,7 @@ struct AI_VeknissGuardian : public ScriptedAI{
         DoMeleeAttackIfReady();
     }
 
-}
+};
 
 
 

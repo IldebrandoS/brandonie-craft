@@ -334,7 +334,7 @@ struct boss_yaujAI : public boss_bug_trioAI
         // Heal
         if (m_uiHealTimer < uiDiff)
         {      
-            Unit* pTarget = m_creature->FindLowestHpFriendlyUnit(100.0f)
+            Unit* pTarget = m_creature->FindLowestHpFriendlyUnit(100.0f);
              if (DoCastSpellIfCan(pTarget, SPELL_HEAL) == CAST_OK)
                  m_uiHealTimer = 12000;
         }
