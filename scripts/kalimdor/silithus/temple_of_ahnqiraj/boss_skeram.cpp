@@ -82,10 +82,10 @@ struct boss_skeramAI : public ScriptedAI
 
     void Reset() override
     {
-        ArcaneExplosion_Timer = urand(6000, 8000);
+        ArcaneExplosion_Timer = urand(8000, 10000);
         EarthShock_Timer = 1000;
-        FullFillment_Timer = urand(10000, 15000);
-        Blink_Timer = urand(15000, 20000);
+        FullFillment_Timer = urand(15000, 20000);
+        Blink_Timer = urand(38000, 40000);
 
         NextSplitPercent = 75.0f;
 
@@ -203,7 +203,7 @@ struct boss_skeramAI : public ScriptedAI
             if (players.size() > 4)
             {
                 if (DoCastSpellIfCan(m_creature->GetVictim(), SPELL_ARCANE_EXPLOSION) == CAST_OK)
-                    ArcaneExplosion_Timer = urand(6000, 14000);
+                    ArcaneExplosion_Timer = urand(6000, 10000);
             }
         }
         else ArcaneExplosion_Timer -= diff;
@@ -237,7 +237,7 @@ struct boss_skeramAI : public ScriptedAI
                     m_creature->CastSpell(target, SPELL_TF_MOD_HEAL, true);
                     m_creature->CastSpell(target, SPELL_TF_IMMUNITY, true);
 
-                    FullFillment_Timer = urand(20500, 25000);
+                    FullFillment_Timer = urand(25000, 30000);
                     ControlledPlayerGUID = target->GetObjectGuid();
                 }
             }
@@ -247,7 +247,7 @@ struct boss_skeramAI : public ScriptedAI
         if (Blink_Timer < diff)
         {
             CastBlink(m_creature);
-            Blink_Timer = urand(10000, 18000);
+            Blink_Timer = urand(20000, 25000);
         }
         else
             Blink_Timer -= diff;

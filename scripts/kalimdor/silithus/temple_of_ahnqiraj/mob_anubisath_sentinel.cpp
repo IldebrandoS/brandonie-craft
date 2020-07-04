@@ -27,7 +27,7 @@ enum
 {
     SPELL_MENDING_BUFF =        2147,
     SPELL_KNOCK_BUFF =          21737,
-    SPELL_KNOCK =               25778,
+    SPELL_KNOCK =               20686,
     SPELL_MANAB_BUFF =          812,
     SPELL_MANAB =               25779,
 
@@ -112,7 +112,7 @@ struct aqsentinelAI : public ScriptedAI
     void MoveInLineOfSight(Unit* pWho) override
     {
         // Increase aggro radius
-        if (pWho->GetTypeId() == TYPEID_PLAYER && !m_creature->IsInCombat() && m_creature->IsWithinDistInMap(pWho, 45.0f) && m_creature->IsWithinLOSInMap(pWho) && !pWho->HasAuraType(SPELL_AURA_FEIGN_DEATH))
+        if (pWho->GetTypeId() == TYPEID_PLAYER && !m_creature->IsInCombat() && m_creature->IsWithinDistInMap(pWho, 40.0f) && m_creature->IsWithinLOSInMap(pWho) && !pWho->HasAuraType(SPELL_AURA_FEIGN_DEATH))
         {
             AttackStart(pWho);
         }
@@ -315,7 +315,7 @@ struct aqsentinelAI : public ScriptedAI
         {
             if (m_uiKnock_Timer < uiDiff)
             {
-                DoCastSpellIfCan(m_creature->GetVictim(), SPELL_KNOCK);
+                DoCastSpellIfCan(m_creature->GetVictim(), SPELL_KNOCK, CF_TRIGGERED);
                 m_uiKnock_Timer = 13000;
             }
             else

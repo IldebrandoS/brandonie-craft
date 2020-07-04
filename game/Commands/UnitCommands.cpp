@@ -325,8 +325,14 @@ bool ChatHandler::HandleAuraHelper(uint32 spellID, int32 duration, Unit* unit)
 
 bool ChatHandler::HandleAuraCommand(char* args)
 {
-    Unit* target = GetSelectedUnit();
+    Unit* target = GetSelectedPlayer();
     if (!target)
+    {
+        SendSysMessage(LANG_SELECT_CHAR_OR_CREATURE);
+        SetSentErrorMessage(true);
+        return false;
+    }
+    if (!target->IsPlayer())
     {
         SendSysMessage(LANG_SELECT_CHAR_OR_CREATURE);
         SetSentErrorMessage(true);

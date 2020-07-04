@@ -983,10 +983,15 @@ bool ChatHandler::HandleDebugSetAuraStateCommand(char* args)
     if (!ExtractInt32(&args, state))
         return false;
 
-    Unit* unit = GetSelectedUnit();
+    Unit* unit = GetSelectedPlayer();
     if (!unit)
     {
-        SendSysMessage(LANG_SELECT_CHAR_OR_CREATURE);
+        SendSysMessage(LANG_NO_CHAR_SELECTED);
+        SetSentErrorMessage(true);
+        return false;
+    }
+    if(!(unit->IsPlayer() )){
+        SendSysMessage(LANG_NO_CHAR_SELECTED);
         SetSentErrorMessage(true);
         return false;
     }

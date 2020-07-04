@@ -268,7 +268,7 @@ static constexpr uint32 SPELL_ROTATE_TRIGGER_CASTTIME   = 3000;
 static constexpr uint32 GREEN_BEAM_PHASE_DURATION       = 45000;
 static constexpr uint32 DARK_GLARE_PHASE_DURATION       = 38000; 
 static constexpr uint32 DARK_GLARE_COOLING_DOWN         = 1000;
-//static constexpr int32  MAX_INITIAL_PULLER_HITS       = 3;     // How many times will c'thun target the initial 
+static constexpr int32  MAX_INITIAL_PULLER_HITS       = 3;     // How many times will c'thun target the initial 
                                                                  // puller with green beam before random target.
 static constexpr int32  P1_GREEN_BEAM_COOLDOWN          = 3000;  // Green beam has a 2 sec cast time. If this number is > 2000, 
                                                                  // the cooldown will be P1_GREEN_BEAM_COOLDOWN - 2000
@@ -328,9 +328,9 @@ static constexpr uint32 TELEPORT_BURIED_DURATION               = 1000; // How lo
 *  A suggested way to make the pull slightly more challenging is tuning DELAYED_COMBAT_DURATION to 
 *  somewhere between 6 and 9 seconds.
 */
-#define USE_POSTFIX_PRENERF_PULL_LOGIC
+//#define USE_POSTFIX_PRENERF_PULL_LOGIC
 #ifdef USE_POSTFIX_PRENERF_PULL_LOGIC
-static constexpr uint32 DELAYED_COMBAT_DURATION = 9000;
+static constexpr uint32 DELAYED_COMBAT_DURATION = 12000;
 #endif
 // =======================================================
 
